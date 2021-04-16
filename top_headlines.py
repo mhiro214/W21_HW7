@@ -36,7 +36,7 @@ list_results = list()
 
 for i in range(5):
     list_results.append([dict_results['results'][i]['title'], dict_results['results'][i]['url'],
-        dict_results['results'][i]['multimedia'][1]['url']])
+        dict_results['results'][i]['multimedia'][3]['url']])
 
 @app.route('/')
 def index():
@@ -48,14 +48,35 @@ def name(nm):
 
 @app.route('/headlines/<nm>')
 def headlines(nm):
-    article1 = list_results[0][0]
-    article2 = list_results[1][0]
-    article3 = list_results[2][0]
-    article4 = list_results[3][0]
-    article5 = list_results[4][0]
-    return render_template('headlines.html', name=nm, article1=article1,
-     article2=article2, article3=article3, article4=article4, article5=article5) 
+    list_article = list()
+    for result in list_results:
+        list_article.append(result[0])
 
+    return render_template('headlines.html', name=nm, list_article=list_article) 
+
+@app.route('/links/<nm>')
+def links(nm):
+    list_article = list()
+    list_url = list()
+    for result in list_results:
+        list_article.append(result[0])
+        list_url.append(result[1])
+    num = len(list_results)
+
+    return render_template('links.html', name=nm, list_article=list_article, list_url=list_url, num=num) 
+
+@app.route('/images/<nm>')
+def images(nm):
+    list_article = list()
+    list_url = list()
+    list_image = list()
+    for result in list_results:
+        list_article.append(result[0])
+        list_url.append(result[1])
+        list_image.append(result[2])
+    num = len(list_results)
+
+    return render_template('images.html', name=nm, list_article=list_article, list_url=list_url, list_image=list_image, num=num)
 
 if __name__ == "__main__":
     print('starting Flask app', app.name)  

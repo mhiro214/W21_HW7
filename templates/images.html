@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+    <h1>
+        Hello, {{name}}!
+    </h1>
+    <h4>
+        Today's technology headlines are...
+    </h4>
+    <h4>
+    <table border='1'>
+        <tr>
+            <th>Title</th>
+            <th>Thumbnail</th>
+        </tr>
+        {% for i in range(num) %}
+        <tr>
+            <td><a href={{list_url[i]}}>{{list_article[i]}}</a></td>
+            <td><img src={{list_image[i]}}></td>
+        </tr>
+        {% endfor %}
+    </table>
+    </h4>
+
+</body>
+</html>

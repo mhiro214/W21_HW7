@@ -12,8 +12,8 @@
     </h4>
     <h4>
     <ol>
-        {% for article in list_article %}
-        <li>{{article}}</li>
+        {% for i in range(num) %}
+        <li><a href={{list_url[i]}}>{{list_article[i]}}</a></li>
         {% endfor %}
     </ol>
     </h4>
